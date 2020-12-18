@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>2079-1</title>
+  
+  
+  
+  
+<style>
+body {
+  text-align: center;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: DodgerBlue;
+  justify-content: center;
+}
+span {
+  font-size:420%
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+#text {
+  padding: 20px;
+  font-size: 200%;
+  text-decoration:underline;
+}
+</style>
+
+  
+  
+  
+  
+
+</head>
+
+<body translate="no" >
+  <h1>El Tiempo</h1>
+
+<div class="flex-container">
+  <div id="hours">1</div>
+  <span>:</span>
+  <div id="minutes">2</div>
+  <span>:</span>
+  <div id="seconds">3</div>  
+</div>
+<div id="text">Por la mañana</div>
+  
+  
+      <script id="rendered-js" >
+console.clear();
+console.log("hello world");
+const numNames = ['cerro','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez',           'once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte','veintiuno','veintidós',	'veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+var Am = 1
+
+// for(let i = 0; i < numNames.length;i++){
+// console.log(numNames[i])  
+// };
+
+function updateSec(){
+  const d = new Date();
+  let secs = d.getSeconds();
+  console.log(secs);
+  if(secs <= 29){
+    secs = numNames[secs];
+  } else {
+    var secString = secs.toString();
+    var cT = secString.split("");
+    if (cT[0] == 3){
+      if (cT[1] > 0) {
+      var secCombine = ['treinta','y', numNames[cT[1]]];
+      secs = secCombine.join(' ');
+      } else {
+        secs = "treinta"
+      }
+    } else if (cT[0] == 4){
+        if (cT[1] > 0) {
+      var secCombine = ['cuarenta','y', numNames[cT[1]]];
+      secs = secCombine.join(' ');
+      } else {
+        secs = "cuarenta"
+      }
+    } else {
+       if (cT[1] > 0) {
+      var secCombine = ['cincuenta','y', numNames[cT[1]]];
+      secs = secCombine.join(' ');
+      } else {
+        secs = "cincuenta"
+      }
+    }
+  }
+  document.getElementById('seconds').innerHTML = secs;
+}
+
+function updateMin(){
+  const d = new Date();
+  let mins = d.getMinutes();
+  console.log(mins);
+  if(mins <= 29){
+    mins = numNames[mins];
+  } else {
+    var minString = mins.toString();
+    var cTM = minString.split("");
+    if (cTM[0] == 3){
+      if (cTM[1] > 0) {
+      var minCombine = ['treinta','y', numNames[cTM[1]]];
+      mins = minCombine.join(' ');
+      } else {
+        mins = "treinta"
+      }
+    } else if (cTM[0] == 4){
+        if (cTM[1] > 0) {
+      var minCombine = ['cuarenta','y', numNames[cTM[1]]];
+      mins = minCombine.join(' ');
+      } else {
+        mins = "cuarenta"
+      }
+    } else {
+       if (cTM[1] > 0) {
+      var minCombine = ['cincuenta','y', numNames[cTM[1]]];
+      mins = minCombine.join(' ');
+      } else {
+        mins = "cincuenta"
+      }
+    }
+  }
+  document.getElementById('minutes').innerHTML = mins;
+}
+
+function updateHr(){
+  const d = new Date();
+  let hrs = d.getHours();
+  if (hrs < 13) {
+    document.getElementById('hours').innerHTML = numNames[hrs];
+    Am = 1;
+  } else {
+    document.getElementById('hours').innerHTML = numNames[hrs-12];
+    Am = 0;
+  }
+  //document.getElementById('hours').innerHTML = hrs;
+};
+
+function updateTime() {
+  updateSec();
+  updateMin();
+  updateHr();
+  if (Am == 1) {
+    document.getElementById('text').innerHTML = "Por la mañana"
+  } else {
+    document.getElementById('text').innerHTML = "Por la tarde"
+  }
+};
+
+updateTime();
+setInterval(updateTime, 1000);
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
